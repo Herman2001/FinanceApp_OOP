@@ -24,14 +24,14 @@ public class UpdateTransactionCommand extends BaseCommand {
 
             displayTransactions(all);
             int index = input.promptForInt("Välj index att uppdatera: ", 0, all.size() - 1);
-            
-            String newDesc = input.promptForString("Ny beskrivning: ");
-            String amountInput = input.promptForString("Nytt belopp: ");
-            String dateInput = input.promptForString("Nytt datum (YYYY-MM-DD): ");
 
-            double newAmount = amountInput.isBlank() ? Double.NaN : Double.parseDouble(amountInput);
-            LocalDate newDate = dateInput.isBlank() ? null : LocalDate.parse(dateInput);
-            newDesc = newDesc.isBlank() ? null : newDesc;
+            String newDesc = input.promptForOptionalString("Ny beskrivning: ");
+            String amountInput = input.promptForOptionalString("Nytt belopp: ");
+            String dateInput = input.promptForOptionalString("Nytt datum (YYYY-MM-DD): ");
+
+            double newAmount = (amountInput == null || amountInput.isBlank()) ? Double.NaN : Double.parseDouble(amountInput);
+            LocalDate newDate = (dateInput == null || dateInput.isBlank()) ? null : LocalDate.parse(dateInput);
+            newDesc = (newDesc == null || newDesc.isBlank()) ? null : newDesc;
 
             service.updateTransaction(index, newDesc, newAmount, newDate);
             System.out.println("Transaktion uppdaterad!");

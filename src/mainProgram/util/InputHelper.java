@@ -40,6 +40,14 @@ public class InputHelper {
         }
     }
 
+    public String promptForOptionalString(String message) {
+        while(true) {
+            System.out.print(message);
+            String s = scanner.nextLine();
+            return s.isBlank() ? null : s;
+        }
+    }
+
     public LocalDate promptForDateOrToday(String message) {
         System.out.print(message);
         String input = scanner.nextLine();
