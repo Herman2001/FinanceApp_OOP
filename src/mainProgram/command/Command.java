@@ -1,4 +1,6 @@
 package mainProgram.command;
 
-public class Command {
+public interface Command {
+    void execute();
+    String getDescription();
 }
