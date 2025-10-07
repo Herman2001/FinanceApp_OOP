@@ -1,4 +1,25 @@
 package mainProgram.command;
 
-public class ListTransactionCommand {
+import mainProgram.model.Transaction;
+import mainProgram.service.TransactionService;
+import mainProgram.util.InputHelper;
+import java.util.List;
+
+public class ListTransactionCommand extends BaseCommand {
+
+    public ListTransactionCommand(TransactionService service, InputHelper input) {
+        super(service, input, "Lista alla");
+    }
+
+    @Override
+    public void execute() {
+        List<Transaction> all = service.getAllTransactions();
+        if(all.isEmpty()) {
+            System.out.println("Inga transaktioner.");
+            return;
+        }
+        for(int i = 0; i < all.size(); i++) {
+            System.out.println(i + ": " + all.get(i));
+        }
+    }
 }
