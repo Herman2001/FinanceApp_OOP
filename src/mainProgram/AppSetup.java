@@ -17,7 +17,7 @@ public class AppSetup {
     private final List<Command> commands;
 
     public AppSetup() {
-        var scanner = new Scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         this.input = new InputHelper(scanner);
 
         TransactionRepository csvRepo = new CsvTransactionRepository("transactions.csv");
