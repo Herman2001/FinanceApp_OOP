@@ -6,6 +6,7 @@ import mainProgram.repository.TransactionMemoryRepository;
 import java.time.LocalDate;
 import java.time.YearMonth;
 import java.time.temporal.WeekFields;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,9 +38,28 @@ public class TransactionService {
     }
 
     public List<Transaction> filterByYear(int year) {
+        // Streamfunktion utan variabelnamn på listan, returnerar direkt.
         return repo.getAll().stream()
-                .filter(t -> t.getDate().getYear() == year)
+                .filter(t  -> t.getDate().getYear() == year)
                 .collect(Collectors.toList());
+
+        // Samma användning av .stream() och .collect() fast med variabelnamn på listan.
+/*        List <Transaction> filtered = repo.getAll().stream().
+                filter(t -> t.getDate().getYear() == year)
+                .collect(Collectors.toList());
+
+        return filtered;
+
+        // Vanlig for loop med if sats
+        List<Transaction> all = repo.getAll();
+        List<Transaction> filtered = new ArrayList<>();
+        for(Transaction t : all) {
+            if(t.getDate().getYear() == year) {
+                filtered.add(t);
+            }
+        }
+        return filtered;
+*/
     }
 
     public List<Transaction> filterByMonth(YearMonth month) {

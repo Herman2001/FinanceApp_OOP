@@ -58,7 +58,20 @@ public class FilterTransactionCommand extends BaseCommand {
             return;
         }
 
+        // Olika sätt att skriva på
+
+        // Lambda
         filtered.forEach(System.out::println);
+
+        // Enhanced loop
+/*        for (Transaction element : filtered) {
+            System.out.println(element);
+        }*/
+
+        // "Vanlig" for-loop
+/*        for (int i = 0; i < filtered.size(); i++) {
+            System.out.println(filtered.get(i));
+        }*/
         double income = service.sumIncome(filtered);
         double expenses = service.sumExpenses(filtered);
         double result = income + expenses;
