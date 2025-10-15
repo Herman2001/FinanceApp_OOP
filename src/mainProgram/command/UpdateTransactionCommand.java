@@ -34,7 +34,6 @@ public class UpdateTransactionCommand extends BaseCommand {
             newDesc = (newDesc == null || newDesc.isBlank()) ? null : newDesc;
 
             service.updateTransaction(index, newDesc, newAmount, newDate);
-            System.out.println("Transaktion uppdaterad!");
         });
     }
 
