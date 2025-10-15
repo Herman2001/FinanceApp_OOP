@@ -12,9 +12,24 @@ import java.util.stream.Collectors;
 
 public class TransactionService {
     private final TransactionMemoryRepository repo;
+    private final List<TransactionObserver> observers = new ArrayList<>();
 
     public TransactionService(TransactionMemoryRepository repo) {
         this.repo = repo;
+    }
+
+    public void addObserver(TransactionObserver observer) {
+        observers.add(observer);
+    }
+
+    public void removeObserver(TransactionObserver observer) {
+        observers.remove(observer);
+    }
+
+    private void notifyObservers(Transaction transaction) {
+        for (TransactionObserver observer : observers) {
+            observer.transactionUpdated(transaction);
+        }
     }
 
     public void addTransaction(Transaction transaction) { repo.add(transaction); repo.saveAll(); }
@@ -35,6 +50,8 @@ public class TransactionService {
         Transaction updated = new Transaction(desc, amount, date);
         repo.update(index, updated);
         repo.saveAll();
+
+        notifyObservers(updated);
     }
 
     public List<Transaction> filterByYear(int year) {
