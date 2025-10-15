@@ -12,8 +12,8 @@ import java.util.Scanner;
 
 public class AppSetup {
 
-    private final TransactionService service;
     private final InputHelper input;
+    private final TransactionService service;
     private final List<Command> commands;
 
     public AppSetup() {
@@ -23,6 +23,9 @@ public class AppSetup {
         TransactionRepository csvRepo = new CsvTransactionRepository("transactions.csv");
         TransactionMemoryRepository memoryRepo = new TransactionMemoryRepository(csvRepo);
         this.service = new TransactionService(memoryRepo);
+
+        this.service.addObserver(new mainProgram.service.ConsoleLogger());
+        this.service.addObserver(new mainProgram.service.ShowBalanceObserver(service));
 
         this.commands = List.of (
             new AddTransactionCommand(service, input),
