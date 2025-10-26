@@ -18,8 +18,6 @@ public class ListTransactionCommand extends BaseCommand {
             System.out.println("Inga transaktioner.");
             return;
         }
-        for(int i = 0; i < all.size(); i++) {
-            System.out.println(i + ": " + all.get(i));
-        }
+        all.forEach(System.out::println);
     }
 }

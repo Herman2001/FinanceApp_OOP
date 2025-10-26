@@ -18,7 +18,7 @@ public class CsvTransactionRepository implements TransactionRepository {
     public void save(List<Transaction> transactions) {
         try (PrintWriter writer = new PrintWriter(new FileWriter(fileName))) {
             for (Transaction transaction : transactions) {
-                writer.println(transaction.toCSV());
+               writer.println(transaction.toCSV());
             }
         } catch (IOException e) {
             System.out.println("Kunde inte spara filen: " + e.getMessage());

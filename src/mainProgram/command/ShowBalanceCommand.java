@@ -11,7 +11,6 @@ public class ShowBalanceCommand extends BaseCommand {
 
     @Override
     public void execute() {
-        double balance = service.getBalance();
-        System.out.println("Saldo: " + balance + " kr");
+        System.out.println("Saldo: " + service.getBalance() + " kr");
     }
 }
