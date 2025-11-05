@@ -15,9 +15,9 @@
 ## Struktur
 
 - **Command**: Terminal-kommandon hanteras via Command Pattern, vilket gör det enkelt att lägga till nya funktioner och separera användarinteraktion från logik.
-- **Service**: Affärslogik för transaktioner, inklusive summering, filtrering och uppdatering.
-- **Repository**: Abstraktion för datalagring (Memory + CSV) som möjliggör enkel utbytbart sparande, t.ex. mot databas i framtiden.
-- **Model**: `Transaction` som representerar varje transaktion.
+- **Service**: Logik för transaktioner, inklusive summering, filtrering och uppdatering. Samt observers.
+- **Repository**: Abstraktion för datalagring (Memory + CSV) som möjliggör enkel utbytbart sparande, t.ex. mot databas.
+- **Model**: Transaction som representerar varje transaktion.
 - **Util**: Hjälpklasser för input och validering.
 
 ---
